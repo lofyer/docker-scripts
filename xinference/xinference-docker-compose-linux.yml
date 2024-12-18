@@ -1,0 +1,32 @@
+services:
+  xinference:
+    image: xprobe/xinference:latest
+    ports:
+      - "9997:9997"
+    volumes:
+      - /media/lofyer/NVMe_4T/models/xinference/xhome:/xhome
+      - /media/lofyer/NVMe_4T/models/huggingface:/root/.cache/huggingface
+      - /media/lofyer/NVMe_4T/models/modelscope:/root/.cache/modelscope
+#    volumes:
+#      # Replace <xinference_home> with your xinference home path on the host machine
+#      - <xinference_home>:/root/.xinference
+#      # Replace <huggingface_cache_dir> with your huggingface cache path, default is
+#      # <home_path>/.cache/huggingface
+#      - <huggingface_cache_dir>:/root/.cache/huggingface
+#      # If models are downloaded from modelscope, replace <huggingface_cache_dir> with
+#      # your modelscope cache path, default is <home_path>/.cache/modelscope
+#      - <modelscope_cache_dir>:/root/.cache/modelscope
+#    environment:
+#      # add envs here. Here's an example, if you want to download model from modelscope
+#      - XINFERENCE_MODEL_SRC=modelscope
+    environment:
+      - HF_ENDPOINT=https://hf-mirror.com
+      - XINFERENCE_MODEL_SRC=huggingface
+    command: xinference-local --host 0.0.0.0 --port 9997
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+              driver: nvidia
+              count: all
