@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  gpustack:
+    image: gpustack/gpustack
+    ports:
+      - "6080:80"
+    restart: always
+    ipc: host
+    volumes:
+      - gpustack-data:/var/lib/gpustack
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+    # uncomment and update the followings for starting GPUStack worker
+    # command: --server-url http://myserver --token mytoken
+    # network_mode: host
+
+volumes:
+  gpustack-data: {}
