@@ -8,7 +8,7 @@ services:
     restart: always
     ipc: host
     volumes:
-      - gpustack-data:/var/lib/gpustack
+      - f:/models/gpustack/:/var/lib/gpustack
     deploy:
       resources:
         reservations:
