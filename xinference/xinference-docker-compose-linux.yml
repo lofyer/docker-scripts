@@ -1,6 +1,7 @@
 services:
   xinference:
     image: xprobe/xinference:latest
+    restart: always
     ports:
       - "9997:9997"
     volumes:
