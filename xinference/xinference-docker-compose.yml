@@ -7,7 +7,7 @@ services:
     ports:
       - "9997:9997"
     volumes:
-      - f:/models/xinference/xhome:/xhome
+      - f:/models/xinference/:/root/.xinference
       - f:/models/huggingface:/root/.cache/huggingface
       - f:/models/modelscope:/root/.cache/modelscope
 #    volumes:
