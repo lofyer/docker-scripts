@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   fishaudio:
-    image: fishaudio/fish-speech:1.5
+    image: fishaudio/fish-speech:v1.5.0
     restart: always
     ports:
       - "7860:7860"
