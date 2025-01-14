@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  fishaudio:
+    image: fishaudio/fish-speech:1.5
+    restart: always
+    ports:
+      - "7860:7860"
+    environment:
+      - HF_ENDPOINT=https://hf-mirror.com
+    command: zsh
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+              driver: nvidia
+              count: all
