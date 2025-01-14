@@ -8,6 +8,7 @@ services:
       - "7860:7860"
     environment:
       - HF_ENDPOINT=https://hf-mirror.com
+      - GRADIO_SERVER_NAME="0.0.0.0"
     deploy:
       resources:
         reservations:
