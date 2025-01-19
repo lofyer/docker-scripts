@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  worker:
+    image: xprobe/xorbits:v0.8.2-cuda12.5-py3.12
+    restart: always
+    ports:
+      - "9992:9992"
+    #volumes:
+      #- f:/models/xinference/:/root/.xinference
+      #- f:/models/huggingface:/root/.cache/huggingface
+      #- f:/models/modelscope:/root/.cache/modelscope
+#    volumes:
+#      # Replace <xinference_home> with your xinference home path on the host machine
+#      - <xinference_home>:/root/.xinference
+#      # Replace <huggingface_cache_dir> with your huggingface cache path, default is
+#      # <home_path>/.cache/huggingface
+#      - <huggingface_cache_dir>:/root/.cache/huggingface
+#      # If models are downloaded from modelscope, replace <huggingface_cache_dir> with
+#      # your modelscope cache path, default is <home_path>/.cache/modelscope
+#      - <modelscope_cache_dir>:/root/.cache/modelscope
+#    environment:
+#      # add envs here. Here's an example, if you want to download model from modelscope
+#      - XINFERENCE_MODEL_SRC=modelscope
+    environment:
+      - HF_ENDPOINT=https://hf-mirror.com
+      - XINFERENCE_MODEL_SRC=huggingface
+    command: /opt/conda/bin/python -m xorbits.worker -s 192.168.0.21:9991 -p 9992
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+              driver: nvidia
+              count: all
