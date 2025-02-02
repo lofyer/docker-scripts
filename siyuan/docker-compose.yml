@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  main:
+    image: b3log/siyuan
+    command: ['--workspace=/siyuan/workspace/', '--accessAuthCode=pswd4admin']
+    ports:
+      - 6806:6806
+    volumes:
+      - ./workspace:/siyuan/workspace
+    restart: unless-stopped
