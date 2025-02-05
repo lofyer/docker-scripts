@@ -1,0 +1,14 @@
+version: '3.5'
+
+services:
+  attu:
+    container_name: attu 
+    image: zilliz/attu:v2.4.11
+    environment:
+      MILVUS_URL: localhost:19530
+    ports:
+      - "18000:3000"
+
+networks:
+  default:
+    name: milvus
