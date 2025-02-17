@@ -1,0 +1,22 @@
+version: '3.6'
+services:
+  gitlab:
+    image: zengxs/gitlab:latest # ARM image
+    #image: gitlab/gitlab-ee:latest # X86 image
+    container_name: gitlab
+    restart: always
+    hostname: 'git.digiman.live'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        # Add any other gitlab.rb configuration here, each on its own line
+        external_url 'https://git.digiman.live'
+        gitlab_rails['gitlab_shell_ssh_port'] = 7022
+    ports:
+      - '7080:80'
+      - '7443:443'
+      - '7022:22'
+    volumes:
+      - './data/config:/etc/gitlab'
+      - './data/logs:/var/log/gitlab'
+      - './data/data:/var/opt/gitlab'
+    shm_size: '256m'
