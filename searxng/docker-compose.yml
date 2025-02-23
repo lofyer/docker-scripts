@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  searxng:
+    image: searxng/searxng
+    restart: always
+    ports:
+      - "5080:8080"
+    environment:
+      - BASE_URL=http://192.168.0.21:5080
+      - INSTANCE_NAME=searxng
+    volumes:
+      - ./searxng:/etc/searxng
