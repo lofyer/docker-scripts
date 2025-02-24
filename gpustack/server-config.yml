@@ -1,0 +1,18 @@
+# Common Options
+debug: false
+data_dir: /path/to/data_dir
+cache_dir: /path/to/cache_dir
+token: mytoken
+
+# Server Options
+host: 0.0.0.0
+port: 80
+disable_worker: false
+database_url: postgresql://user:password@hostname:port/db_name
+#ssl_keyfile: /path/to/keyfile
+#ssl_certfile: /path/to/certfile
+force_auth_localhost: false
+bootstrap_password: myadminpassword
+#ollama_library_base_url: https://registry.mycompany.com
+disable_update_check: false
+model_catalog_file: /path_or_url/to/model_catalog_file
