@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  freshrss:
+    image: freshrss/freshrss:latest
+    # # Optional build section if you want to build the image locally:
+    # build:
+    #   # Pick #latest (slow releases) or #edge (rolling release) or a specific release like #1.21.0
+    #   context: https://github.com/FreshRSS/FreshRSS.git#latest
+    #   dockerfile: Docker/Dockerfile-Alpine
+    ports:
+      - "${PUBLISHED_PORT:-8080}:${LISTEN:-80}"
+    container_name: freshrss
+    hostname: freshrss
+    restart: unless-stopped
+    logging:
+      options:
+        max-size: 10m
+    volumes:
+      - "./data:/var/www/FreshRSS/data"
+      - "./extensions:/var/www/FreshRSS/extensions"
+    environment:
+      TZ: Europe/Paris
+      CRON_MIN: '3,33'
+      TRUSTED_PROXY: 172.16.0.1/12 192.168.0.1/16
+    depends_on:
+      - freshrss-db
+
+  freshrss-db:
+    image: postgres:17
+    container_name: freshrss-db
+    hostname: freshrss-db
+    restart: unless-stopped
+    logging:
+      options:
+        max-size: 10m
+    volumes:
+      - "./db:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_DB: ${DB_BASE:-freshrss}
+      POSTGRES_USER: ${DB_USER:-freshrss}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-freshrss}
+    command:
+      # Examples of PostgreSQL tuning.
+      # https://wiki.postgresql.org/wiki/Tuning_Your_PostgreSQL_Server
+      # When in doubt, skip and stick to default PostgreSQL settings.
+      - -c
+      - shared_buffers=1GB
+      - -c
+      - work_mem=32MB

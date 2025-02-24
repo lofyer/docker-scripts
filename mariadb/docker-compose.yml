@@ -1,0 +1,11 @@
+version : '3.8'
+services:
+  mariadb:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: "pswd4mysql"
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./mysql-conf.d:/etc/mysql/conf.d"
+      - "./data:/var/lib/mysql"
