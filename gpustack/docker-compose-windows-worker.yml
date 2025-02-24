@@ -1,0 +1,28 @@
+services:
+  gpustack:
+    image: gpustack/gpustack
+    ports:
+      #- "6080:80"
+      - "10150:10150"
+      - "10151:10151"
+      #- "40000-41024:40000-41024"
+      #- "50000-51024:50000-51024"
+    restart: always
+    #ipc: host
+    environment:
+      - HF_ENDPOINT=https://hf-mirror.com
+    volumes:
+      - f:/models/gpustack/:/var/lib/gpustack/
+      - ./worker-config.yml:/var/lib/gpustack/worker-config.yml # config file
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+    # uncomment and update the followings for starting GPUStack worker
+    command: "--config-file /var/lib/gpustack/worker-config.yml"
+    # network_mode: host
+
+#volumes:
+ # gpustack-data: {}

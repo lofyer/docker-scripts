@@ -5,15 +5,15 @@ debug: false
 token: 14a46b39bce6f8587dffda5e94a2b577
 
 # Worker Options
-server_url: http://192.168.0.50:6080
-worker_name: myworker
+server_url: http://192.168.0.22:6080
+worker_name: windows-rex
 worker_ip: 192.168.0.50
-disable_metrics: false
-disable_rpc_servers: false
+#disable_metrics: false
+#disable_rpc_servers: false
 metrics_port: 10151
 worker_port: 10150
 #log_dir: /path/to/log_dir
-rpc_server_args: ["--verbose"]
+#rpc_server_args: ["--verbose"]
 #system_reserved:
 #  ram: 2
 #  vram: 1
