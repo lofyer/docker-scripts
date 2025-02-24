@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>ai.gpustack</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/lofyer/.local/bin/gpustack</string>
+    <string>start</string>
+    <string>--port</string>
+    <string>6080</string>
+  </array>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>HF_ENDPOINT</key>
+    <string>https://hf-mirror.com</string>
+    <key>HF_TOKEN</key>
+    <string>hf_token</string>
+  </dict>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>KeepAlive</key>
+  <true/>
+  <key>EnableTransactions</key>
+  <true/>
+  <key>StandardOutPath</key>
+  <string>/var/log/gpustack.log</string>
+  <key>StandardErrorPath</key>
+  <string>/var/log/gpustack.log</string>
+</dict>
+</plist>
