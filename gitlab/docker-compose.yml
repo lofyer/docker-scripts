@@ -1,4 +1,3 @@
-version: '3.6'
 services:
   gitlab:
     image: zengxs/gitlab:latest # ARM image
@@ -11,6 +10,7 @@ services:
         # Add any other gitlab.rb configuration here, each on its own line
         external_url 'https://git.digiman.live'
         gitlab_rails['gitlab_shell_ssh_port'] = 7022
+        gitlab_rails['allow_local_requests_from_web_hooks_and_services'] = true
     ports:
       - '7080:80'
       - '7443:443'
