@@ -1,0 +1,15 @@
+services:
+  openwebui:
+    image: langflowai/langflow:latest
+    ports:
+      - "7777:7860"
+    volumes:
+      - ./data/langflow:/app/langflow 
+      - ./data/langflow-postgres:/var/lib/postgresql/data
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
