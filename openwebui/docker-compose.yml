@@ -3,19 +3,19 @@ services:
   openwebui:
     image: ghcr.io/open-webui/open-webui:main
     ports:
-      - "5080:8080"
+      - "9080:8080"
     volumes:
       - ./open-webui:/app/backend/data
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu]
+    #deploy:
+    #  resources:
+    #    reservations:
+    #      devices:
+    #        - driver: nvidia
+    #          count: all
+    #          capabilities: [gpu]
     environment:
-      - OLLAMA_BASE_URL=http://192.168.0.50:11434 # 不需要外置ollama就把这个删掉，内置了它
-      - WEBUI_AUTH=False # 如果开启了这个模式，大概率为了纯可信域的访问，那么访问的URL链接后面最好跟上 ?temporary-chat=true
-      - WEBUI_SECRET_KEY=t0p-s3cr3t
+      - OLLAMA_BASE_URL=http://192.168.0.22:11434 # 不需要外置ollama就把这个删掉，内置了它
+      #- WEBUI_AUTH=False # 如果开启了这个模式，大概率为了纯可信域的访问，那么访问的URL链接后面最好跟上 ?temporary-chat=true
+      #- WEBUI_SECRET_KEY=t0p-s3cr3t
       - OFFLINE_MODE=True
-      - ENABLE_OPENAI_API=False
+      #- ENABLE_OPENAI_API=False

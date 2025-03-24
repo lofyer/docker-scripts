@@ -27,10 +27,3 @@ services:
       - HF_ENDPOINT=https://hf-mirror.com
       - XINFERENCE_MODEL_SRC=huggingface
     command: /opt/conda/bin/python -m xorbits.supervisor --host 0.0.0.0 -p 9991 -w 9990
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - capabilities: [gpu]
-              driver: nvidia
-              count: all
